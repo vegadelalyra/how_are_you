@@ -1,4 +1,3 @@
-// src/services/firebaseConfig.js
 import { initializeApp } from 'firebase/app';
 import {
   GoogleAuthProvider,
@@ -10,15 +9,11 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import firebaseConfig from '../../firebaseConfig.json';
-import { useAuth } from '../contexts/authContext';
 
+// Initialize Firebase App
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const currentUser = auth.currentUser;
-
 const googleProvider = new GoogleAuthProvider();
-
-const { setCurrentState } = useAuth();
 
 // Set session persistence
 setPersistence(auth, browserLocalPersistence)
@@ -29,17 +24,9 @@ setPersistence(auth, browserLocalPersistence)
     console.error('Error setting persistence:', error);
   });
 
-onAuthStateChanged(auth, user => {
-  setCurrentState(user);
-});
+// Authentication services
+const oAuth2SignInService = async () => signInWithPopup(auth, googleProvider);
+const oAuth2SignOutService = async () => await signOut(auth);
 
-const oAuth2SignInService = async () => {
-  return await signInWithPopup(auth, googleProvider);
-};
-
-const oAuth2SignOutService = async () => {
-  const nullUser = await signOut(auth);
-  return nullUser;
-};
-
-export { currentUser, oAuth2SignInService, oAuth2SignOutService };
+// Export Auth and Google Sign-In/Sign-Out services
+export { auth, oAuth2SignInService, oAuth2SignOutService };

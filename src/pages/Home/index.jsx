@@ -1,4 +1,3 @@
-// src/components/Home.jsx
 import React from 'react';
 import { oAuth2SignInService } from '../../services/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
@@ -11,9 +10,9 @@ function Home() {
 
   const handleGoogleSignIn = async () => {
     try {
-      login(await oAuth2SignInService());
-      // On successful login, navigate to /how
-      navigate('/how');
+      const user = await oAuth2SignInService();
+      login(user); // Store the user in global state
+      navigate('/how'); // On successful login, navigate to /how
     } catch (error) {
       console.error('Authentication Error: ', error.message);
     }

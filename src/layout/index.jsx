@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './layout.module.sass';
 import { useNavigate } from 'react-router-dom';
-import { FiSettings } from 'react-icons/fi'; // Settings icon
-import { BiExit } from 'react-icons/bi'; // Exit icon
+import { FiSettings } from 'react-icons/fi';
+import { BiExit } from 'react-icons/bi';
 import { useAuth } from '../contexts/authContext';
 import { oAuth2SignOutService } from '../services/firebaseConfig';
 
@@ -12,7 +12,8 @@ const Layout = ({ children }) => {
 
   const handleLogout = async () => {
     try {
-      logout(await oAuth2SignOutService());
+      await oAuth2SignOutService(); // Sign out from Firebase
+      logout(); // Remove the user from the global state
       navigate('/'); // Redirect to home or login page
     } catch (error) {
       console.error('Error signing out:', error.message);
