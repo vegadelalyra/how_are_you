@@ -1,12 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { Home, How, When, Why } from '../pages';
 import PrivateRoute from './PrivateRoute';
-import Home from '../pages/Home';
-import How from '../pages/How';
-import Why from '../pages/Why';
-import When from '../pages/When';
 
-const routes = (count, setCount) => [
+const routes = ({ count, setCount }) => [
   <Route key='/' path='/' element={<Home />} />,
   <Route
     key='/how'

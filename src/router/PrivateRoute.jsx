@@ -1,8 +1,10 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { currentUser } from '../services/firebaseConfig';
+import { useAuth } from '../contexts/authContext';
 
 const PrivateRoute = ({ children }) => {
+  const { currentUser } = useAuth();
+
   return currentUser ? children : <Navigate to='/' />;
 };
 

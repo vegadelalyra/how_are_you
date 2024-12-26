@@ -6,14 +6,19 @@ import {
   setPersistence,
   browserLocalPersistence,
   signInWithPopup,
+  signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 import firebaseConfig from '../../firebaseConfig.json';
+import { useAuth } from '../contexts/authContext';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const currentUser = auth.currentUser;
 
 const googleProvider = new GoogleAuthProvider();
+
+const { setCurrentState } = useAuth();
 
 // Set session persistence
 setPersistence(auth, browserLocalPersistence)
@@ -24,12 +29,17 @@ setPersistence(auth, browserLocalPersistence)
     console.error('Error setting persistence:', error);
   });
 
+onAuthStateChanged(auth, user => {
+  setCurrentState(user);
+});
+
 const oAuth2SignInService = async () => {
-  await signInWithPopup(auth, googleProvider);
+  return await signInWithPopup(auth, googleProvider);
 };
 
 const oAuth2SignOutService = async () => {
-  await signOut(auth);
+  const nullUser = await signOut(auth);
+  return nullUser;
 };
 
-export { auth, currentUser, oAuth2SignInService, oAuth2SignOutService };
+export { currentUser, oAuth2SignInService, oAuth2SignOutService };

@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "oauth2-a209e"
-  }
+    "default": "oauth2-a209e",
+    "production": "oauth2-a209e"
+  },
+  "targets": {},
+  "etags": {}
 }

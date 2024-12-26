@@ -2,14 +2,16 @@
 import React from 'react';
 import { oAuth2SignInService } from '../../services/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/authContext';
 import './styles.sass';
 
 function Home() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleGoogleSignIn = async () => {
     try {
-      await oAuth2SignInService();
+      login(await oAuth2SignInService());
       // On successful login, navigate to /how
       navigate('/how');
     } catch (error) {
