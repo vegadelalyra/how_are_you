@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "pnpm ci && pnpm build",
+    "predeploynpm": "npm ci && npm run build"
   },
   "dependencies": {
     "firebase": "^11.1.0",
