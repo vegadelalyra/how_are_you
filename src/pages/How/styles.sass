@@ -1,0 +1,49 @@
+.how-container
+  display: flex
+  flex-direction: column
+  height: 100vh
+  width: 100vw
+  margin: 0
+  overflow: hidden
+
+  &.horizontal
+    flex-direction: row
+
+  &.vertical
+    flex-direction: column
+
+.how-title
+  position: absolute
+  top: 10px
+  width: 100%
+  text-align: center
+  font-size: 3rem
+  font-weight: bold
+  color: white
+  z-index: 1
+
+.how-section
+  flex: 1
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size: 2rem
+  font-weight: bold
+  cursor: pointer
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out
+
+  &.win
+    background-color:  #c79de0
+    &:hover
+      transform: scale(1.05)
+      background-color: #bd6ced
+
+  &.lose
+    background-color: #9e3a67
+    &:hover
+      transform: scale(1.05)
+      background-color: #8c1c4e
+
+.how-text
+  color: white
+  text-transform: uppercase
