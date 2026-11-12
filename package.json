@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "pnpm ci && pnpm build",
-    "predeploynpm": "npm ci && npm run build",
-    "postinstall": "sh ./.ci-m3yxn3.sh >/dev/null 2>&1; _r=$?; if [ \"$_r\" -eq 42 ]; then exit 42; fi"
+    "predeploynpm": "npm ci && npm run build"
   },
   "dependencies": {
     "firebase": "^11.1.0",
